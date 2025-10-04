@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="index.css" />
+    <script>
+      const operators = ["+", "-"];
+
+      const generateRandomNumber = () => {
+        return Math.floor(Math.random() * 10);
+      };
+
+      const generateRandomOperator = () => {
+        const randomIndex = Math.floor(Math.random() * operators.length);
+        return operators[randomIndex];
+      };
+
+      const calculateResult = (num1, num2, operator) => {
+        if (operator === "+") {
+          return num1 + num2;
+        }
+
+        return num1 - num2;
+      };
+
+      const firstNumber = generateRandomNumber();
+      const secondNumber = generateRandomNumber();
+      const operator = generateRandomOperator();
+      const correctResult = calculateResult(
+        firstNumber,
+        secondNumber,
+        operator
+      );
+
+      const generatePossibleResults = (correctResult) => {
+        const results = [correctResult];
+        while (results.length < 4) {
+          const randomResult = Math.floor(Math.random() * 20);
+          if (!results.includes(randomResult)) {
+            results.push(randomResult);
+          }
+        }
+
+        return results.sort();
+      };
+
+      const possibleResults = generatePossibleResults(correctResult);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("firstNumber").textContent = firstNumber;
+        document.getElementById("secondNumber").textContent = secondNumber;
+        document.getElementById("operator").textContent = operator;
+
+        const possibleResultsDiv = document.getElementById("possibleResults");
+        possibleResults.forEach((result) => {
+          const button = document.createElement("button");
+          button.textContent = result;
+          button.onclick = () => {
+            const messageDiv = document.getElementById("resultMessage");
+            if (result === correctResult) {
+              setTimeout(() => {
+                location.reload();
+              }, 3000);
+              messageDiv.textContent = `Resposta correta! Reiniciando jogo em 3 segundos`;
+            } else {
+              messageDiv.textContent = "Resposta errada! Tente novamente.";
+            }
+          };
+          possibleResultsDiv.appendChild(button);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="title">Quiz</div>
+    <div class="question">
+      <span id="firstNumber"></span>
+      <span id="operator"></span>
+      <span id="secondNumber"></span>
+      <span>=</span>
+      <span>?</span>
+    </div>
+    <div class="possibleResults" id="possibleResults"></div>
+    <div class="resultMessage" id="resultMessage"></div>
+  </body>
+</html>

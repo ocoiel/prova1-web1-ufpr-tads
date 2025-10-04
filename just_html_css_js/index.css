@@ -1,0 +1,35 @@
+.body {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  margin: 20px;
+  color: #333;
+}
+
+.question {
+  font-size: 1.5em;
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  span {
+    color: #333;
+    font-weight: bold;
+  }
+}
+
+.possibleResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 20px;
+}
