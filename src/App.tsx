@@ -43,7 +43,7 @@ function App() {
 
   const handleAnswerClick = (answer: number) => {
     if (answer === rightAnswer) {
-      // alert("Resposta correta! Parabéns! Reiniciando o quiz em 3s...");
+      alert("Resposta correta! Parabéns! Reiniciando o quiz em 3s...");
       setInterval(() => {
         window.location.reload();
       }, 3000);
